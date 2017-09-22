@@ -1,0 +1,27 @@
+title: Posterior Predictive Value
+name: ppv
+jus: '2.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: percTrue
+        format: number
+        inputPattern: '[0-9]+'
+        suffix: '%'
+      - type: TextBox
+        name: alpha
+        format: number
+        inputPattern: '[0-9]+'
+      - type: TextBox
+        name: power
+        format: number
+        inputPattern: '[0-9]+'
+      - type: TextBox
+        name: percHack
+        format: number
+        inputPattern: '[0-9]+'
+        suffix: '%'

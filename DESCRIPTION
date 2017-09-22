@@ -1,0 +1,20 @@
+Package: ppv
+Type: Package
+Title: Posterior predictive value
+Version: 0.1.0
+Author: Ravi Selker
+Maintainer: Ravi Selker <selker.ravi@gmail.com>
+Description: Demonstration of the posterior predictive value. Based on 
+    the 'PPV' shiny app by Felix Schonbrodt <http://shinyapps.org/apps/PPV/>
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 3.2)
+Imports: 
+    jmvcore (>= 0.5.2), 
+    R6, 
+    ggplot2
+Suggests: 
+    testthat
+RoxygenNote: 6.0.1
