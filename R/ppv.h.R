@@ -146,7 +146,7 @@ ppvResults <- if (requireNamespace('jmvcore')) R6::R6Class(
             private$..ppv <- jmvcore::Html$new(
                 options=options,
                 name="ppv",
-                title="Posterior Predictive Value")
+                title="Positive Predictive Value")
             private$..dotPlot <- jmvcore::Image$new(
                 options=options,
                 name="dotPlot",
@@ -182,7 +182,7 @@ ppvBase <- if (requireNamespace('jmvcore')) R6::R6Class(
                 completeWhenFilled = FALSE)
         }))
 
-#' Posterior Predictive Value
+#' Positive Predictive Value
 #'
 #' 
 #' @param percTrue .

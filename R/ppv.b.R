@@ -119,7 +119,7 @@ ppvClass <- R6::R6Class(
             
             html <- self$results$ppv
             
-            ppv <- paste0("<p><b>Posterior Predictive Value (PPV)</b>: ", round(results$ppv*100,2), "% of claimed findings are true, ", 
+            ppv <- paste0("<p><b>Positive Predictive Value (PPV)</b>: ", round(results$ppv*100,2), "% of claimed findings are true, ", 
                           round(results$hit*100,2)," / (", round(results$hit*100,2), " + ", round(results$falseAlarm*100,2), ")</p>")
             fdr <- paste0("<p><b>False Discovery Rate (FDR)</b>: ", round(results$fdr*100,2), "% of claimed findings are false, ", 
                           round(results$falseAlarm*100,2)," / (", round(results$hit*100,2), " + ", round(results$falseAlarm*100,2), ")</p>")

@@ -1,6 +1,6 @@
 ---
 name:  ppv
-title: Posterior Predictive Value
+title: Positive Predictive Value
 menuGroup: Demo
 version: '1.0.0'
 jas: '1.1'
