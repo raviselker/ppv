@@ -19,5 +19,7 @@ analyses:
     ns: ppv
     menuGroup: Demo
     menuTitle: Positive Predictive Value
+minApp: 1.2.22
+usesNative: true
 
 ...
