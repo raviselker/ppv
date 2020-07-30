@@ -16,7 +16,7 @@ ppvOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 name='ppv',
                 requiresData=FALSE,
                 ...)
-        
+
             private$..percTrue <- jmvcore::OptionInteger$new(
                 "percTrue",
                 percTrue,
@@ -41,7 +41,7 @@ ppvOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 min=0,
                 max=100,
                 default=0)
-        
+
             self$.addOption(private$..percTrue)
             self$.addOption(private$..alpha)
             self$.addOption(private$..power)
@@ -62,20 +62,17 @@ ppvOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
 ppvResults <- if (requireNamespace('jmvcore')) R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        confusion = function() private$..confusion,
-        ppv = function() private$..ppv,
-        dotPlot = function() private$..dotPlot),
-    private = list(
-        ..confusion = NA,
-        ..ppv = NA,
-        ..dotPlot = NA),
+        confusion = function() private$.items[["confusion"]],
+        ppv = function() private$.items[["ppv"]],
+        dotPlot = function() private$.items[["dotPlot"]]),
+    private = list(),
     public=list(
         initialize=function(options) {
             super$initialize(
                 options=options,
                 name="",
                 title="Positive Predictive Value")
-            private$..confusion <- jmvcore::Table$new(
+            self$add(jmvcore::Table$new(
                 options=options,
                 name="confusion",
                 title="Percentages",
@@ -142,12 +139,12 @@ ppvResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                     list(
                         `name`="total[total]", 
                         `title`="Total", 
-                        `type`="number")))
-            private$..ppv <- jmvcore::Html$new(
+                        `type`="number"))))
+            self$add(jmvcore::Html$new(
                 options=options,
                 name="ppv",
-                title="Positive Predictive Value")
-            private$..dotPlot <- jmvcore::Image$new(
+                title="Positive Predictive Value"))
+            self$add(jmvcore::Image$new(
                 options=options,
                 name="dotPlot",
                 title="Study Outcomes",
@@ -158,10 +155,7 @@ ppvResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "percTrue",
                     "alpha",
                     "power",
-                    "percHack"))
-            self$add(private$..confusion)
-            self$add(private$..ppv)
-            self$add(private$..dotPlot)}))
+                    "percHack")))}))
 
 ppvBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     "ppvBase",
@@ -179,7 +173,8 @@ ppvBase <- if (requireNamespace('jmvcore')) R6::R6Class(
                 analysisId = analysisId,
                 revision = revision,
                 pause = NULL,
-                completeWhenFilled = FALSE)
+                completeWhenFilled = FALSE,
+                requiresMissings = FALSE)
         }))
 
 #' Positive Predictive Value
@@ -212,14 +207,12 @@ ppv <- function(
     if ( ! requireNamespace('jmvcore'))
         stop('ppv requires jmvcore to be installed (restart may be required)')
 
+
     options <- ppvOptions$new(
         percTrue = percTrue,
         alpha = alpha,
         power = power,
         percHack = percHack)
-
-    results <- ppvResults$new(
-        options = options)
 
     analysis <- ppvClass$new(
         options = options,
